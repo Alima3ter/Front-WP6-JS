@@ -26,8 +26,8 @@ function getTasks() {
   }
   tasks.forEach(function (task) {
     const li = document.createElement("li");
-    li.className = "list-group d-flex align-items-center";
-    li.appendChild(document.createTextNode(taskInput.value));
+    li.className = "list-group-item d-flex align-items-center";
+    li.appendChild(document.createTextNode(task));
     const i = document.createElement("i");
     i.className = " fas fa-times text-danger mr-auto delete-item";
     li.appendChild(i);
@@ -50,8 +50,8 @@ function addTask(e) {
     storeTaskInLocalStorage(taskInput.value);
 
     taskInput.value = "";
+    e.preventDefault();
   }
-  e.preventDefault();
 }
 // store task ls
 function storeTaskInLocalStorage(task) {
@@ -100,11 +100,11 @@ function clearTaskFromLocalStorage() {
 
 // filter
 function filterTask(e) {
-  const text = e.target.value.toLowercase();
+  const text = e.target.value.toLowerCase();
 
   document.querySelectorAll(".list-group-item").forEach(function (task) {
     const item = task.textContent;
-    if (item.toLowercase().indexOf(text) != -1) {
+    if (item.toLowerCase().indexOf(text) != -1) {
       task.classList.add("d-flex");
     } else {
       task.classList.remove("d-flex");
